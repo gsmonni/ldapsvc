@@ -27,13 +27,13 @@ clean: # clean-up binary files
 	rm -rf ${BINARY_FOLDER}
 
 test: # run tests
-	go test -gcflags=all=-l -p=1 ./...
+	go test -gcflags=all=-l -p=1 ./... -cover -coverprofile ./coverage.out
 
 coverage: $(shell find . -type f -print | grep -v vendor | grep "\.go")
 	@go test -cover -coverprofile ./coverage.out ./...
 
 cover: coverage # compute code coverage
-	@go tool cover -html=./coverage.out
+	go tool cover -html=./coverage.out
 
 vendor: # pull vendor directories
 	go mod vendor

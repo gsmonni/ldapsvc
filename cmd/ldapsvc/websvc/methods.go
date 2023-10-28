@@ -18,9 +18,9 @@ func New(server string, port string) *Websvc {
 	}
 	w.r.Use(commonMiddleware)
 
-	w.r.HandleFunc(URILDAPQuery, LdaPQueryHandler)
-	w.r.HandleFunc(URIHealth, Health)
-	w.r.HandleFunc(URIStop, Stop)
+	_ = w.AddRoute(URILDAPQuery, LdaPQueryHandler)
+	_ = w.AddRoute(URIHealth, Health)
+	_ = w.AddRoute(URIStop, Stop)
 
 	// add waitgroup
 	w.wg = &sync.WaitGroup{}
@@ -49,13 +49,26 @@ func (w *Websvc) Start() {
 	}()
 	// wait for goroutine started in startHttpServer() to stop
 	w.wg.Wait()
-
 }
 
-func (w *Websvc) Stop() {
+func (w *Websvc) Stop() error {
 	if err := w.srv.Shutdown(context.TODO()); err != nil {
-		panic(err) // failure/timeout shutting down the server gracefully
+		return err // failure/timeout shutting down the server gracefully
 	}
-
 	log.Printf("main: done. exiting")
+	return nil
+}
+
+func (w *Websvc) AddRoute(uri string, h http.HandlerFunc) error {
+	if w == nil {
+		return fmt.Errorf("invalid web service")
+	}
+	if h == nil {
+		return fmt.Errorf("invalid handle func")
+	}
+	if uri == "" {
+		return fmt.Errorf("invalid uri")
+	}
+	w.r.HandleFunc(uri, h)
+	return nil
 }
