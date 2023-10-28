@@ -13,11 +13,20 @@ this is a simple (http/https) microservice that pulls LDAP informations and pres
 - make run
 - _curl http://localhost:8080/api/v1/ldap/health_
 
-## parameters
-- server: 
-  - address, port
-  - TLS, mTLS 
-  - certificate-file, key-file, ca, ca-path
-- LDAP connection
-  - server address, port
-  - username, password
+## CLI parameters
+```azure
+go run cmd/main.go -h
+Usage: main [options] [arguments]
+
+OPTIONS
+  --certificate-use-tls/$LDAPSVC_CERTIFICATE_USE_TLS      <bool>    (default: false)
+  --certificate-use-mtls/$LDAPSVC_CERTIFICATE_USE_MTLS    <bool>    (default: false)
+  --certificate-strict/$LDAPSVC_CERTIFICATE_STRICT        <bool>    (default: false)
+  --certificate-ca-file/$LDAPSVC_CERTIFICATE_CA_FILE      <string>  (default: ca.cert)
+  --certificate-cert-file/$LDAPSVC_CERTIFICATE_CERT_FILE  <string>  (default: /Users/gianstefanomonni/git/ladapsvc/data/certs/cert.crt)
+  --certificate-key-file/$LDAPSVC_CERTIFICATE_KEY_FILE    <string>  (default: /Users/gianstefanomonni/git/ladapsvc/data/certs/private.key)
+  --certificate-ca-path/$LDAPSVC_CERTIFICATE_CA_PATH      <string>  (default: .)
+  --local-address/$LDAPSVC_LOCAL_ADDRESS                  <string>  
+  --port/$LDAPSVC_PORT                                    <int>     (default: 8080)
+  --help/-h display this help message
+```
