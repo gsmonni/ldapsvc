@@ -1,0 +1,12 @@
+{
+ "Certificate": {
+  "use-tls": false,
+  "use-mtls": false,
+  "ca-file": "ca.cert",
+  "cert-file": "/Users/gianstefanomonni/git/ladapsvc/data/certs/cert.crt",
+  "key-file": "/Users/gianstefanomonni/git/ladapsvc/data/certs/private.key",
+  "ca-path": "."
+ },
+ "local-address": "",
+ "port": 8080
+}

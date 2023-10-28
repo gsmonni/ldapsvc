@@ -14,7 +14,7 @@ this is a simple (http/https) microservice that pulls LDAP informations and pres
 - _curl http://localhost:8080/api/v1/ldap/health_
 
 ## CLI parameters
-ldapsvc parameters can be set either via environment variables, command-line parameters, or via JSON configuration file located in _data/conf/conf.json_
+ldapsvc parameters can be set either via environment variables, command-line parameters, or via JSON configuration file located in [_data/conf/conf.json_](data/conf/conf.json)
 
 ```azure
 go run cmd/main.go -h
