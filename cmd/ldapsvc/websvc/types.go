@@ -27,7 +27,7 @@ type (
 		SN                  string   `json:",omitempty"`
 	}
 	ServerStatus struct {
-		WebSvcStatus      string
+		WebSvcStatus      string `json:"web-service-status"`
 		LDAPServiceStatus string `json:"ldap-service-status"`
 		ReturnStatusCode  int    `json:"-"`
 	}

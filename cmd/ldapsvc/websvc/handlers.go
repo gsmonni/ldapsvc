@@ -20,7 +20,7 @@ func setJsonResponse(data interface{}, w http.ResponseWriter) {
 	_, _ = fmt.Fprintf(w, string(j))
 }
 
-func LdaPQueryHandler(w http.ResponseWriter, r *http.Request) {
+func LDAPQueryHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	res := QueryResponse{
 		QueryAttributeType:  vars[QueryAttributeType],
@@ -29,21 +29,21 @@ func LdaPQueryHandler(w http.ResponseWriter, r *http.Request) {
 	setJsonResponse(res, w)
 }
 
-func Health(w http.ResponseWriter, _ *http.Request) {
+func HealthCheckHandler(w http.ResponseWriter, _ *http.Request) {
 	s := ServerStatus{ReturnStatusCode: http.StatusOK}
 	if Web == nil {
 		s.LDAPServiceStatus = LDAPStatusDown
 		s.WebSvcStatus = ServiceStatusDown
 		s.ReturnStatusCode = http.StatusInternalServerError
+		w.WriteHeader(s.ReturnStatusCode)
 	} else {
 		s.LDAPServiceStatus = LDAPStatusDown
 		s.WebSvcStatus = ServiceStatusUp
 	}
 	setJsonResponse(s, w)
-	w.WriteHeader(s.ReturnStatusCode)
 }
 
-func Stop(w http.ResponseWriter, _ *http.Request) {
+func StopRequestHandler(w http.ResponseWriter, _ *http.Request) {
 	s := ServerStatus{ReturnStatusCode: http.StatusOK}
 	if Web != nil {
 		setJsonResponse(s, w)

@@ -18,9 +18,9 @@ func New(server string, port string) *Websvc {
 	}
 	w.r.Use(commonMiddleware)
 
-	_ = w.AddRoute(URILDAPQuery, LdaPQueryHandler)
-	_ = w.AddRoute(URIHealth, Health)
-	_ = w.AddRoute(URIStop, Stop)
+	_ = w.AddRoute(URILDAPQuery, LDAPQueryHandler)
+	_ = w.AddRoute(URIHealth, HealthCheckHandler)
+	_ = w.AddRoute(URIStop, StopRequestHandler)
 
 	// add waitgroup
 	w.wg = &sync.WaitGroup{}
