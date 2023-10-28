@@ -6,8 +6,7 @@ this is a simple microservice that pulls LDAP informations and presents them via
 - _/api/v1/ldap/stop_: stop the webservice
 
 ## To build the service
-- make build
-ldapsvc binary is generated inside release/
+- make build (ldapsvc binary is generated inside release/)
 
 ## To run the service (without building)
 - make run
