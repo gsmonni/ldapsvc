@@ -2,16 +2,24 @@ package websvc
 
 import (
 	"github.com/gorilla/mux"
+	"github.com/gsmonni/ladapsvc/cmd/ldapsvc/common"
 	"net/http"
 	"sync"
 )
 
 type (
+	Parameters struct {
+		Certificate  common.TCertificate
+		LocalAddress string
+		Port         common.TPort
+	}
+
 	IWebSvc interface {
 		Start()
 		Stop()
 	}
 	Websvc struct {
+		p   *Parameters
 		r   *mux.Router
 		wg  *sync.WaitGroup
 		srv *http.Server

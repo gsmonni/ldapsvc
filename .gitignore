@@ -4,3 +4,7 @@ go.sum
 vendor/
 release/
 coverage.out
+certs/private.key
+certs/cert.crt
+data/certs/cert.crt
+data/certs/private.key

@@ -8,10 +8,13 @@ import (
 	"testing"
 )
 
+var p = &Parameters{Port: 8080}
+
 func TestHealthCheckHandlerOK(t *testing.T) {
 	// Create a request to pass to our handler. We don't have any query parameters for now, so we'll
 	// pass 'nil' as the third parameter.
-	pg := gomonkey.ApplyGlobalVar(&Web, New("test", "80"))
+	w, _ := New(p)
+	pg := gomonkey.ApplyGlobalVar(&Web, w)
 
 	req, err := http.NewRequest("GET", URIHealth, nil)
 	if err != nil {
