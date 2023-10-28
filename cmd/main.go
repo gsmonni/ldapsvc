@@ -10,7 +10,7 @@ func main() {
 	var cfg websvc.Parameters
 
 	if err := cli.Parse(&cfg); err != nil {
-		log.Fatalf("main : Parsing Config : %v", err)
+		log.Fatalf("main : error while parsing Config : %v", err)
 	}
 
 	var err error
