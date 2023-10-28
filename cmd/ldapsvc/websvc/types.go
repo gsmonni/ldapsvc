@@ -11,9 +11,9 @@ import (
 type (
 	Parameters struct {
 		Certificate  common.TCertificate
-		LocalAddress string
-		Port         int          `conf:"default:8080"`
-		Version      conf.Version `conf:"-"`
+		LocalAddress string `json:"local-address"`
+		Port         int    `json:"port" conf:"default:8080"`
+		conf.Version `json:"-" conf:"-"`
 	}
 
 	IWebSvc interface {
