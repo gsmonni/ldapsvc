@@ -8,16 +8,16 @@ type (
 	TPort uint16
 
 	TCertificate struct {
-		UseTLS  bool
-		UseMTLS bool
-		Strict  bool
+		UseTLS  bool `conf:"default:false"`
+		UseMTLS bool `conf:"default:false"`
+		Strict  bool `conf:"default:false"`
 
-		CAFile   string
-		CertFile string
-		KeyFile  string
+		CAFile   string `conf:"default:ca.cert"`
+		CertFile string `conf:"default:/Users/gianstefanomonni/git/ladapsvc/data/certs/cert.crt"`
+		KeyFile  string `conf:"default:/Users/gianstefanomonni/git/ladapsvc/data/certs/private.key"`
 
-		Cert tls.Certificate
+		Cert tls.Certificate `conf:"-"`
 
-		CAPath string
+		CAPath string `conf:"default:."`
 	}
 )
