@@ -1,6 +1,7 @@
 package websvc
 
 import (
+	"github.com/ardanlabs/conf/v3"
 	"github.com/gorilla/mux"
 	"github.com/gsmonni/ladapsvc/cmd/ldapsvc/common"
 	"net/http"
@@ -11,7 +12,8 @@ type (
 	Parameters struct {
 		Certificate  common.TCertificate
 		LocalAddress string
-		Port         common.TPort
+		Port         int          `conf:"default:8080"`
+		Version      conf.Version `conf:"-"`
 	}
 
 	IWebSvc interface {
