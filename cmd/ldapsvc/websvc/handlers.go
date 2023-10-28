@@ -47,9 +47,13 @@ func Stop(w http.ResponseWriter, _ *http.Request) {
 	s := ServerStatus{ReturnStatusCode: http.StatusOK}
 	if Web != nil {
 		setJsonResponse(s, w)
-		time.Sleep(1 * time.Second)
-		Web.Stop()
-		return
+		time.Sleep(200 * time.Millisecond)
+		if err := Web.Stop(); err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+		} else {
+			_, _ = fmt.Fprintf(w, "server stopped")
+			w.WriteHeader(http.StatusOK)
+		}
 	}
 	w.WriteHeader(http.StatusBadRequest)
 }
