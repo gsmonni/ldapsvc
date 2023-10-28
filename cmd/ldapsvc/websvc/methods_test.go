@@ -52,6 +52,6 @@ func TestWebsvc_AddRoute(t *testing.T) {
 
 	w = New("test", "123")
 	assert.Error(t, w.AddRoute("", nil))
-	assert.Error(t, w.AddRoute("", LdaPQueryHandler))
-	assert.NoError(t, w.AddRoute("test", LdaPQueryHandler))
+	assert.Error(t, w.AddRoute("", LDAPQueryHandler))
+	assert.NoError(t, w.AddRoute("test", LDAPQueryHandler))
 }
