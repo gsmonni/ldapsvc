@@ -6,10 +6,12 @@ import (
 	"crypto/x509"
 	"fmt"
 	"github.com/gorilla/mux"
+	"github.com/gsmonni/ladapsvc/cmd/ldapsvc/common"
 	"github.com/gsmonni/ladapsvc/cmd/ldapsvc/ldapbackend"
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"sync"
 	"time"
 )
@@ -94,7 +96,8 @@ func New(p *Parameters) (*Websvc, error) {
 
 	sw := w.r.PathPrefix("/swaggerui").Subrouter()
 	sw.Use(SwaggerMiddleware)
-	sh := http.StripPrefix("/swaggerui/", http.FileServer(http.Dir("./data/swagger/")))
+	swaggerpath := filepath.Join(common.Datapath, "data/swagger/")
+	sh := http.StripPrefix("/swaggerui/", http.FileServer(http.Dir(swaggerpath)))
 	sw.PathPrefix("/").Handler(sh)
 	sw.StrictSlash(true)
 	apir := w.r.PathPrefix("/api/v1").Subrouter()
