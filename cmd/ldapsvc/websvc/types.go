@@ -11,11 +11,12 @@ import (
 
 type (
 	Parameters struct {
-		Certificate  common.TCertificate
-		LocalAddress string `json:"local-address"`
-		Port         int    `json:"port" conf:"default:8080"`
-		LDAP         ldapbackend.LDAPParameters
-		conf.Version `json:"-" conf:"-"`
+		Certificate    common.TCertificate
+		LocalAddress   string `json:"local-address"`
+		Port           int    `json:"port" conf:"default:8080"`
+		SaveLastConfig bool   `json:"-" conf:"default:false"`
+		LDAP           ldapbackend.LDAPParameters
+		conf.Version   `json:"-" conf:"-"`
 	}
 
 	IWebSvc interface {
