@@ -14,6 +14,7 @@ curently LDAP connection is mocked. Mock data is located within
 Valid client-id are
 - 64975760-cdd6-4910-8133-928ea48bd091
 - 256731ab-8c3f-4006-91ad-aa1784d59d0b
+![image](https://github.com/gsmonni/ldapsvc/assets/142036606/79c61717-d50e-4a0f-aaed-49e43d653393)
 
 ## CLI parameters
 ldapsvc parameters can be set either via environment variables, command-line parameters, or via JSON configuration file located in [_data/conf/conf.json_](data/conf/conf.json)
