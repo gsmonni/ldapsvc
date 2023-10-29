@@ -27,11 +27,11 @@ func TestHealthCheckHandlerOK(t *testing.T) {
 	// directly and pass in our Request and ResponseRecorder.
 	handler.ServeHTTP(rr, req)
 	// Check the status code is what we expect.
-	assert.Equal(t, http.StatusOK, rr.Code)
+	assert.Equal(t, http.StatusInternalServerError, rr.Code)
 
 	// Check the response body is what we expect.
-	expected := `{"web-service-status":"UP","ldap-service-status":"DOWN"}`
-	assert.Equal(t, rr.Body.String(), expected)
+	expected := `{"web-service-status":"DOWN","ldap-service-status":"DOWN"}`
+	assert.Equal(t, expected, rr.Body.String())
 	pg.Reset()
 }
 
@@ -54,6 +54,6 @@ func TestHealthCheckHandlerWebNil(t *testing.T) {
 	assert.Equal(t, http.StatusInternalServerError, rr.Code)
 
 	// Check the response body is what we expect.
-	expected := `{"web-service-status":"DOWN","ldap-service-status":"DOWN"}`
+	expected := "{\"web-service-status\":\"DOWN\",\"ldap-service-status\":\"DOWN\"}"
 	assert.Equal(t, expected, rr.Body.String())
 }

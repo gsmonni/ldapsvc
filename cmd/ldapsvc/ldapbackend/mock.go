@@ -6,6 +6,7 @@ import (
 	"github.com/gsmonni/ladapsvc/cmd/ldapsvc/common"
 	"log"
 	"math/rand"
+	"path/filepath"
 	"strings"
 )
 
@@ -41,6 +42,7 @@ func SaveResult(r *Results, fn string) error {
 	if r == nil {
 		return fmt.Errorf("empty result")
 	}
+	fn = filepath.Join(common.Datapath, fn)
 	if err := common.SaveJson(fn, *r); err != nil {
 		return fmt.Errorf("error saving data (%v)", err.Error())
 	}
