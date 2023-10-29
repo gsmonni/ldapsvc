@@ -5,8 +5,8 @@
 - make build (ldapsvc binary is generated inside release/)
 
 ## To run the service (without building)
-- make run
-- _curl http://localhost:8080/api/v1/ldap/health_
+1. make run (this will start the service listening on all interfaces on port 8080)
+2. use swagger: _curl http://localhost:8080/swaggerui/_
 
 ## CLI parameters
 ldapsvc parameters can be set either via environment variables, command-line parameters, or via JSON configuration file located in [_data/conf/conf.json_](data/conf/conf.json)
