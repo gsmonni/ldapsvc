@@ -5,6 +5,7 @@ import (
 	"crypto/tls"
 	"fmt"
 	"github.com/gorilla/mux"
+	"github.com/gsmonni/ladapsvc/cmd/ldapsvc/ldapbackend"
 	"log"
 	"net/http"
 	"sync"
@@ -37,15 +38,6 @@ func buildServer(p *Parameters, h http.Handler) (*http.Server, error) {
 		return nil, fmt.Errorf("cannot create server")
 	}
 	return s, nil
-}
-
-// Simple wrapper to Allow CORS.
-func withCORS(fn http.Handler) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "*")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-		fn.ServeHTTP(w, r)
-	}
 }
 
 func New(p *Parameters) (*Websvc, error) {
@@ -84,6 +76,10 @@ func New(p *Parameters) (*Websvc, error) {
 	// add waitgroup
 	w.wg = &sync.WaitGroup{}
 	w.wg.Add(1)
+
+	if Provider, err = ldapbackend.New(p.LDAP); err != nil {
+		return nil, fmt.Errorf("cannot build LDAP provider (%v)", err.Error())
+	}
 
 	return w, nil
 }

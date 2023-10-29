@@ -6,7 +6,14 @@
 
 ## To run the service (without building)
 - make run
-- _curl http://localhost:8080/api/v1/ldap/health_
+- _curl http://localhost:8080/swaggerui/
+
+### LDAP Data
+curently LDAP connection is mocked. Mock data is located within 
+[_data/ldapsvc/ldap-data.json_ ](data/ldapsvc/ldap-data.json)
+Valid client-id are
+- 64975760-cdd6-4910-8133-928ea48bd091
+- 256731ab-8c3f-4006-91ad-aa1784d59d0b
 
 ## CLI parameters
 ldapsvc parameters can be set either via environment variables, command-line parameters, or via JSON configuration file located in [_data/conf/conf.json_](data/conf/conf.json)

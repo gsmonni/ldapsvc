@@ -10,6 +10,11 @@ import (
 )
 
 type (
+	ReturnMessage struct {
+		Message string
+		Code    int
+	}
+
 	Parameters struct {
 		Certificate    common.TCertificate
 		LocalAddress   string `json:"local-address"`

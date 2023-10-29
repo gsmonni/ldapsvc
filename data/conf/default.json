@@ -10,10 +10,12 @@
  "local-address": "",
  "port": 8080,
  "LDAP": {
-  "bind-string": "cn=admin,dc=example,dc=example",
+  "bind-string": "cn=admin",
   "bind-password": "mypass",
   "server": "localhost",
   "port": 636,
-  "use-ldaps": "false"
+  "use-ldaps": "false",
+  "mock": true,
+  "mock-data-file": "data/ldapsvc/ldap-data.json"
  }
 }
