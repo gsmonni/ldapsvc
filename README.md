@@ -5,6 +5,7 @@ this is a simple (http/https) microservice that pulls LDAP informations and pres
 - _/api/v1/ldap/health_: returns the service health status (web frontend and LDAP backend)
 - /_api/v1/ldap/query/{query-attribute-type}/{query-attribute-value}_: performs a LDAP query to select all objects whose type corresponds to the given value
 - _/api/v1/ldap/stop_: stop the webservice
+![image](https://github.com/gsmonni/ldapsvc/assets/142036606/187f6d78-eb55-4aab-9230-402d7f98c904)
 
 ## To build the service
 - make build (ldapsvc binary is generated inside release/)
