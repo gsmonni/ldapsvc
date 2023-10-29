@@ -8,13 +8,13 @@ type (
 	TPort uint16
 
 	TCertificate struct {
-		UseTLS  bool `json:"use-tls" conf:"default:false"`
-		UseMTLS bool `json:"use-mtls" conf:"default:false"`
+		UseTLS  bool `json:"use-tls"`
+		UseMTLS bool `json:"use-mtls"`
 
-		CAFile   string `json:"ca-file" conf:"default:ca.cert"`
-		CertFile string `json:"cert-file" conf:"default:/Users/gianstefanomonni/git/ladapsvc/data/certs/cert.crt"`
-		KeyFile  string `json:"key-file" conf:"default:/Users/gianstefanomonni/git/ladapsvc/data/certs/private.key"`
-		CAPath   string `json:"ca-path" conf:"default:."`
+		CAFile   string `json:"ca-file"`
+		CertFile string `json:"cert-file"`
+		KeyFile  string `json:"key-file"`
+		CAPath   string `json:"ca-path"`
 
 		Cert tls.Certificate `json:"-" conf:"-"`
 	}
