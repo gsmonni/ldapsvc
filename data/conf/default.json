@@ -11,10 +11,10 @@
   "ca-path": "/Users/gianstefanomonni/git/ladapsvc/data/certs/ca/"
  },
  "LDAP": {
-  "bind-string": "cn=admin",
+  "bind-string": "cn=admin,dc=example,dc=example",
   "bind-password": "mypass",
   "server": "localhost",
-  "port": 636,
+  "port": 389,
   "use-ldaps": false,
   "mock": true,
   "mock-data-file": "data/ldapsvc/ldap-data.json",
