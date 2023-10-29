@@ -27,7 +27,7 @@ func (p *Provider) Connect() error {
 		return fmt.Errorf("LDAPS currently not supported")
 	}
 	proto := "ldap"
-	ldapURL := fmt.Sprintf("%s://%s:%s", proto, p.parameters.Server, p.parameters.Port)
+	ldapURL := fmt.Sprintf("%s://%s:%d", proto, p.parameters.Server, p.parameters.Port)
 	var err error
 	if p.c, err = ldap.DialURL(ldapURL); err != nil {
 		return err

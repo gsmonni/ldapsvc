@@ -7,20 +7,23 @@ import (
 	"github.com/gsmonni/ladapsvc/cmd/ldapsvc/common"
 	"github.com/gsmonni/ladapsvc/cmd/ldapsvc/websvc"
 	"log"
+	"os"
+	"path/filepath"
 )
 
 const ConfFile = "data/conf/conf.json"
 const DefConfFile = "data/conf/default.json"
 
 func Parse(cfg *websvc.Parameters) error {
+	common.Datapath = os.Getenv("DATAPATH")
 
 	cfg.Build = "1.0.0"
 	cfg.Desc = "LDAP Service"
-	myConf := ConfFile
+	myConf := filepath.Join(common.Datapath, ConfFile)
 
 	if err := common.ReadJson(myConf, cfg); err != nil {
 		log.Printf("error reading configuration file %s (%v)", myConf, err.Error())
-		myConf = DefConfFile
+		myConf = filepath.Join(common.Datapath, DefConfFile)
 		if err := common.ReadJson(myConf, cfg); err != nil {
 			log.Printf("error reading configuration file %s (%v)", myConf, err.Error())
 		} else {
