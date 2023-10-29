@@ -5,8 +5,8 @@
 - make build (ldapsvc binary is generated inside release/)
 
 ## To run the service (without building)
-- make run
-- _curl http://localhost:8080/swaggerui/
+1. make run (this will start the service listening on all interfaces on port 8080)
+2. use swagger: _curl http://localhost:8080/swaggerui/_
 
 ### LDAP Data
 curently LDAP connection is mocked. Mock data is located within 
