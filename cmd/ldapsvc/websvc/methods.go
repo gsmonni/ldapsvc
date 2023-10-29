@@ -39,6 +39,15 @@ func buildServer(p *Parameters, h http.Handler) (*http.Server, error) {
 	return s, nil
 }
 
+// Simple wrapper to Allow CORS.
+func withCORS(fn http.Handler) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		fn.ServeHTTP(w, r)
+	}
+}
+
 func New(p *Parameters) (*Websvc, error) {
 	var (
 		w   = new(Websvc)
@@ -55,9 +64,16 @@ func New(p *Parameters) (*Websvc, error) {
 	}
 	w.r.Use(commonMiddleware)
 
-	_ = w.AddRoute(URILDAPQuery, LDAPQueryHandler)
-	_ = w.AddRoute(URIHealth, HealthCheckHandler)
-	_ = w.AddRoute(URIStop, StopRequestHandler)
+	sw := w.r.PathPrefix("/swaggerui").Subrouter()
+	sw.Use(SwaggerMiddleware)
+	sh := http.StripPrefix("/swaggerui/", http.FileServer(http.Dir("./data/swagger/")))
+	sw.PathPrefix("/").Handler(sh)
+
+	apir := w.r.PathPrefix("/api/v1").Subrouter()
+	apir.Use(apiMiddleware)
+	_ = AddRoute(apir, URILDAPQuery, LDAPQueryHandler)
+	_ = AddRoute(apir, URIHealth, HealthCheckHandler)
+	_ = AddRoute(apir, URIStop, StopRequestHandler)
 
 	w.Walk()
 
@@ -106,8 +122,8 @@ func (w *Websvc) Stop() error {
 	return nil
 }
 
-func (w *Websvc) AddRoute(uri string, h http.HandlerFunc) error {
-	if w == nil {
+func AddRoute(r *mux.Router, uri string, h http.HandlerFunc) error {
+	if r == nil {
 		return fmt.Errorf("invalid web service")
 	}
 	if h == nil {
@@ -116,7 +132,7 @@ func (w *Websvc) AddRoute(uri string, h http.HandlerFunc) error {
 	if uri == "" {
 		return fmt.Errorf("invalid uri")
 	}
-	w.r.HandleFunc(uri, h)
+	r.HandleFunc(uri, h)
 	return nil
 }
 
@@ -124,7 +140,7 @@ func (w *Websvc) Walk() {
 	_ = w.r.Walk(func(route *mux.Route, router *mux.Router, ancestors []*mux.Route) error {
 		tpl, err1 := route.GetPathTemplate()
 		met, err2 := route.GetMethods()
-		log.Println(tpl, err1, met, err2)
+		fmt.Println(tpl, err1, met, err2)
 		return nil
 	})
 
