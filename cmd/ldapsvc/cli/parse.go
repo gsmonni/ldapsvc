@@ -21,7 +21,6 @@ func Parse(cfg *websvc.Parameters) error {
 			log.Printf("error reading configuration file %s", err.Error())
 		} else {
 			fmt.Println(conf.String(cfg))
-			return nil
 		}
 	}
 

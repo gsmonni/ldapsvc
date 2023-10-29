@@ -4,6 +4,7 @@ import (
 	"github.com/ardanlabs/conf/v3"
 	"github.com/gorilla/mux"
 	"github.com/gsmonni/ladapsvc/cmd/ldapsvc/common"
+	"github.com/gsmonni/ladapsvc/cmd/ldapsvc/ldapbackend"
 	"net/http"
 	"sync"
 )
@@ -13,6 +14,7 @@ type (
 		Certificate  common.TCertificate
 		LocalAddress string `json:"local-address"`
 		Port         int    `json:"port" conf:"default:8080"`
+		LDAP         ldapbackend.LDAPParameters
 		conf.Version `json:"-" conf:"-"`
 	}
 

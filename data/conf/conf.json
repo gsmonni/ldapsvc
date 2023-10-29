@@ -8,5 +8,12 @@
   "ca-path": "."
  },
  "local-address": "",
- "port": 8080
+ "port": 8080,
+ "LDAP": {
+  "bind-string": "cn=admin,dc=example,dc=example",
+  "bind-password": "mypass",
+  "server": "localhost",
+  "port": 636,
+  "use-ldaps": "false"
+ }
 }

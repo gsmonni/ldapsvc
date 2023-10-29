@@ -63,12 +63,13 @@ func New(p *Parameters) (*Websvc, error) {
 		return nil, fmt.Errorf("cannot build mux-router")
 	}
 	w.r.Use(commonMiddleware)
+	w.r.StrictSlash(true)
 
 	sw := w.r.PathPrefix("/swaggerui").Subrouter()
 	sw.Use(SwaggerMiddleware)
 	sh := http.StripPrefix("/swaggerui/", http.FileServer(http.Dir("./data/swagger/")))
 	sw.PathPrefix("/").Handler(sh)
-
+	sw.StrictSlash(true)
 	apir := w.r.PathPrefix("/api/v1").Subrouter()
 	apir.Use(apiMiddleware)
 	_ = AddRoute(apir, URILDAPQuery, LDAPQueryHandler)
