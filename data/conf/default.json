@@ -1,21 +1,23 @@
 {
+ "save-last-config": true,
+ "local-address": "",
+ "port": 443,
  "Certificate": {
   "use-tls": false,
   "use-mtls": false,
-  "ca-file": "ca.cert",
-  "cert-file": "/Users/gianstefanomonni/git/ladapsvc/data/certs/cert.crt",
-  "key-file": "/Users/gianstefanomonni/git/ladapsvc/data/certs/private.key",
-  "ca-path": "."
+  "ca-file": "/Users/gianstefanomonni/git/ladapsvc/data/certs/ca/cacert.pem",
+  "cert-file": "/Users/gianstefanomonni/git/ladapsvc/data/certs/clientcert/clientcert.pem",
+  "key-file": "/Users/gianstefanomonni/git/ladapsvc/data/certs/clientcert/clientkey.pem",
+  "ca-path": "/Users/gianstefanomonni/git/ladapsvc/data/certs/ca/"
  },
- "local-address": "",
- "port": 8080,
  "LDAP": {
   "bind-string": "cn=admin",
   "bind-password": "mypass",
   "server": "localhost",
   "port": 636,
-  "use-ldaps": "false",
+  "use-ldaps": false,
   "mock": true,
-  "mock-data-file": "data/ldapsvc/ldap-data.json"
+  "mock-data-file": "data/ldapsvc/ldap-data.json",
+  "mock-items-num": 20
  }
 }

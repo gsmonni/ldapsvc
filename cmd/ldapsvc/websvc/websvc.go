@@ -3,15 +3,38 @@ package websvc
 import (
 	"context"
 	"crypto/tls"
+	"crypto/x509"
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/gsmonni/ladapsvc/cmd/ldapsvc/ldapbackend"
 	"log"
 	"net/http"
+	"os"
 	"sync"
 	"time"
 )
 
+/*
+// load CA certificate file and add it to list of client CAs
+
+	caCertFile, err := ioutil.ReadFile("../cert/ca.crt")
+	if err != nil {
+	    log.Fatalf("error reading CA certificate: %v", err)
+	}
+	certPool := x509.NewCertPool()
+	certPool.AppendCertsFromPEM(caCertFile)
+
+	// serve on port 9090 of local host
+	server := http.Server{
+	    Addr:    ":9090",
+	    Handler: handler,
+	    TLSConfig: &tls.Config{
+	        ClientAuth: tls.RequireAndVerifyClientCert,
+	        ClientCAs:  certPool,
+	        MinVersion: tls.VersionTLS12,
+	    },
+	}
+*/
 func buildServer(p *Parameters, h http.Handler) (*http.Server, error) {
 	if err := p.Validate(); err != nil {
 		return nil, fmt.Errorf("cannot start server. invalid parameters (%v)", err.Error())
@@ -19,12 +42,24 @@ func buildServer(p *Parameters, h http.Handler) (*http.Server, error) {
 	var s *http.Server
 
 	if p.Certificate.UseTLS {
+		TLSConf := &tls.Config{
+			Certificates: []tls.Certificate{p.Certificate.Cert},
+		}
+		if p.Certificate.UseMTLS {
+			caCertFile, err := os.ReadFile(p.Certificate.CAFile)
+			if err != nil {
+				return nil, fmt.Errorf("error reading CA certificate: %v", err)
+			}
+			certPool := x509.NewCertPool()
+			certPool.AppendCertsFromPEM(caCertFile)
+			TLSConf.ClientAuth = tls.RequireAndVerifyClientCert
+			TLSConf.ClientCAs = certPool
+			TLSConf.MinVersion = tls.VersionTLS12
+		}
 		s = &http.Server{
-			Addr:    fmt.Sprintf("%s:%d", p.LocalAddress, p.Port),
-			Handler: h,
-			TLSConfig: &tls.Config{
-				Certificates: []tls.Certificate{p.Certificate.Cert},
-			},
+			Addr:      fmt.Sprintf("%s:%d", p.LocalAddress, p.Port),
+			Handler:   h,
+			TLSConfig: TLSConf,
 		}
 	} else {
 		s = &http.Server{
@@ -67,8 +102,6 @@ func New(p *Parameters) (*Websvc, error) {
 	_ = AddRoute(apir, URILDAPQuery, LDAPQueryHandler)
 	_ = AddRoute(apir, URIHealth, HealthCheckHandler)
 	_ = AddRoute(apir, URIStop, StopRequestHandler)
-
-	w.Walk()
 
 	if w.srv, err = buildServer(p, w.r); err != nil {
 		return nil, err
@@ -119,6 +152,15 @@ func (w *Websvc) Stop() error {
 	return nil
 }
 
+func (w *Websvc) Walk() {
+	_ = w.r.Walk(func(route *mux.Route, router *mux.Router, ancestors []*mux.Route) error {
+		tpl, err1 := route.GetPathTemplate()
+		met, err2 := route.GetMethods()
+		fmt.Println(tpl, err1, met, err2)
+		return nil
+	})
+}
+
 func AddRoute(r *mux.Router, uri string, h http.HandlerFunc) error {
 	if r == nil {
 		return fmt.Errorf("invalid web service")
@@ -131,14 +173,4 @@ func AddRoute(r *mux.Router, uri string, h http.HandlerFunc) error {
 	}
 	r.HandleFunc(uri, h)
 	return nil
-}
-
-func (w *Websvc) Walk() {
-	_ = w.r.Walk(func(route *mux.Route, router *mux.Router, ancestors []*mux.Route) error {
-		tpl, err1 := route.GetPathTemplate()
-		met, err2 := route.GetMethods()
-		fmt.Println(tpl, err1, met, err2)
-		return nil
-	})
-
 }

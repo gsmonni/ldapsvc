@@ -16,21 +16,18 @@ func Parse(cfg *websvc.Parameters) error {
 
 	cfg.Build = "1.0.0"
 	cfg.Desc = "LDAP Service"
-	myConf := ""
+	myConf := ConfFile
 
-	if common.FileExists(ConfFile) {
-		myConf = ConfFile
-	} else {
+	if err := common.ReadJson(myConf, cfg); err != nil {
+		log.Printf("error reading configuration file %s (%v)", myConf, err.Error())
 		myConf = DefConfFile
-	}
-
-	if common.FileExists(myConf) {
-		log.Printf("loading configuration from %s", ConfFile)
-		if err := common.ReadJson(ConfFile, cfg); err != nil {
-			log.Printf("error reading configuration file %s", err.Error())
+		if err := common.ReadJson(myConf, cfg); err != nil {
+			log.Printf("error reading configuration file %s (%v)", myConf, err.Error())
 		} else {
-			fmt.Println(conf.String(cfg))
+			log.Printf("configuration loaded from %s", myConf)
 		}
+	} else {
+		log.Printf("configuration loaded from %s", myConf)
 	}
 
 	if s, err := conf.Parse("ldapsvc", cfg); err != nil {
@@ -39,12 +36,12 @@ func Parse(cfg *websvc.Parameters) error {
 		}
 		return err
 	}
+	fmt.Println(conf.String(cfg))
+
 	if cfg.SaveLastConfig {
 		if err := common.SaveJson(ConfFile, *cfg); err != nil {
 			log.Printf("error saving conf %v", err.Error())
 		}
 	}
-
-	fmt.Println(conf.String(cfg))
 	return nil
 }

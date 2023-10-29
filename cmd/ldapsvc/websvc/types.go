@@ -18,21 +18,23 @@ type (
 	Parameters struct {
 		Certificate    common.TCertificate
 		LocalAddress   string `json:"local-address"`
-		Port           int    `json:"port" conf:"default:8080"`
-		SaveLastConfig bool   `json:"-" conf:"default:false"`
+		Port           int    `json:"port"`
+		SaveLastConfig bool   `json:"save-last-config"`
 		LDAP           ldapbackend.LDAPParameters
 		conf.Version   `json:"-" conf:"-"`
 	}
 
 	IWebSvc interface {
 		Start()
-		Stop()
+		Stop() error
+		Walk()
 	}
 	Websvc struct {
 		p   *Parameters
 		r   *mux.Router
 		wg  *sync.WaitGroup
 		srv *http.Server
+		IWebSvc
 	}
 	QueryResponse struct {
 		QueryAttributeType  string   `json:",omitempty"`
