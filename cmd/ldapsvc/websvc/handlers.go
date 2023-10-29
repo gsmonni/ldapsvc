@@ -22,11 +22,26 @@ func setJsonResponse(data interface{}, w http.ResponseWriter) {
 
 func LDAPQueryHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	res := QueryResponse{
-		QueryAttributeType:  vars[QueryAttributeType],
-		QueryAttributeValue: vars[QueryAttributeValue],
+	q := fmt.Sprintf("%s=%s", vars[QueryAttributeType], vars[QueryAttributeValue])
+
+	if Provider == nil {
+		s := ReturnMessage{"LDAP Provider not initialized", http.StatusBadRequest}
+		setJsonResponse(s, w)
+		w.WriteHeader(s.Code)
 	}
-	setJsonResponse(res, w)
+	if r, err := Provider.Query(q); err != nil {
+		s := ReturnMessage{fmt.Sprintf("ldap query error (%v)", err.Error()), http.StatusBadRequest}
+		setJsonResponse(s, w)
+		w.WriteHeader(s.Code)
+	} else {
+		if len(*r) > 0 {
+			d := (*r)[0]
+			setJsonResponse(d, w)
+		} else {
+			s := ReturnMessage{fmt.Sprintf("ldap query returned empty result", err.Error()), http.StatusOK}
+			setJsonResponse(s, w)
+		}
+	}
 }
 
 func HealthCheckHandler(w http.ResponseWriter, _ *http.Request) {

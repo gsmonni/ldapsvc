@@ -1,5 +1,8 @@
 package websvc
 
+import "github.com/gsmonni/ladapsvc/cmd/ldapsvc/ldapbackend"
+
 var (
-	Web *Websvc
+	Web      *Websvc
+	Provider *ldapbackend.Provider
 )

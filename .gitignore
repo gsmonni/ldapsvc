@@ -8,3 +8,4 @@ certs/private.key
 certs/cert.crt
 data/certs/cert.crt
 data/certs/private.key
+data/conf/conf.json

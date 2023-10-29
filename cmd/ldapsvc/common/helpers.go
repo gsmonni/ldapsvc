@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"os"
 )
 
@@ -41,7 +42,7 @@ func ReadJson(fn string, data interface{}) error {
 	jsonFile, err := os.Open(fn)
 	defer func() {
 		if err := jsonFile.Close(); err != nil {
-			panic(err)
+			log.Printf("error closing file %s (%v)", fn, err)
 		}
 	}()
 
