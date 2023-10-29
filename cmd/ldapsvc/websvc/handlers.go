@@ -38,7 +38,7 @@ func LDAPQueryHandler(w http.ResponseWriter, r *http.Request) {
 			d := (*r)[0]
 			setJsonResponse(d, w)
 		} else {
-			s := ReturnMessage{fmt.Sprintf("ldap query returned empty result", err.Error()), http.StatusOK}
+			s := ReturnMessage{fmt.Sprintf("ldap query returned empty result"), http.StatusOK}
 			setJsonResponse(s, w)
 		}
 	}
