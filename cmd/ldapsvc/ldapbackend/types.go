@@ -1,15 +1,18 @@
 package ldapbackend
 
+import "github.com/go-ldap/ldap"
+
 type (
 	LDAPParameters struct {
-		BindString   string `conf:"default:cn=admin,dc=example,dc=example" json:"bind-string"`
-		BindPassword string `conf:"default:mypass,mask" json:"bind-password"`
-		Server       string `conf:"default:localhost" json:"server"`
-		Port         uint16 `conf:"default:636" json:"port"`
-		UseLDAPS     bool   `conf:"default:false" json:"use-ldaps"`
-		Mock         bool   `conf:"default:true" json:"mock"`
-		MockDataFile string `conf:"default:data/ldapsvc/ldap-data.json" json:"mock-data-file"`
-		MockItemsNum uint16 `conf:"default:20" json:"mock-items-num"`
+		BindString   string `json:"bind-string"`
+		BindPassword string `json:"bind-password"`
+		BaseDN       string `json:"base-dn"`
+		Server       string `json:"server"`
+		Port         uint16 `json:"port"`
+		UseLDAPS     bool   `json:"use-ldaps"`
+		Mock         bool   `json:"mock"`
+		MockDataFile string `json:"mock-data-file"`
+		MockItemsNum uint16 `json:"mock-items-num"`
 	}
 	QueryResult struct {
 		CN        string   `json:"cn,omitempty"`
@@ -29,6 +32,7 @@ type (
 	}
 	Provider struct {
 		r *Results
+		c *ldap.Conn
 
 		parameters LDAPParameters
 	}
