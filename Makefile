@@ -44,7 +44,7 @@ publish:
 
 docker-run: build-linux ## Build the container
 	docker build -t $(APP_NAME) -f Dockerfile . 
-	docker run -it --rm -v .:/$(APP_NAME) --name="$(APP_NAME)" $(APP_NAME)
+	docker run -it --rm -p 8080:8080 -v .:/$(APP_NAME) --name="$(APP_NAME)" $(APP_NAME)
 
 first-time: clean vendor test run # run this command to pull all dependencies (this should be run only once)
 
