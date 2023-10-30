@@ -39,6 +39,7 @@ func Parse(cfg *websvc.Parameters) error {
 		}
 		return err
 	}
+	cfg.LDAP.MockDataFile = filepath.Join(common.Datapath, cfg.LDAP.MockDataFile)
 	fmt.Println(conf.String(cfg))
 
 	if cfg.SaveLastConfig {
