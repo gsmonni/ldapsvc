@@ -1,153 +1,169 @@
 [
  {
-  "cn": "Jeanne.Kebab@example.com",
+  "cn": "Jeanne.Fromage@example.com",
   "uid": "LDAP-User-0",
-  "client-id": "f0d3ae47-b2c0-460a-8120-5dcd57978e1a",
-  "country": "IE",
-  "groups": [
-   "App2",
-   "App2"
-  ],
-  "roles": [
-   "Developer",
-   "App5"
-  ],
-  "first-name": "Jeanne",
-  "last-name": "Kebab"
- },
- {
-  "cn": "Stefano.Croissant@example.com",
-  "uid": "LDAP-User-1",
-  "client-id": "6eecd2f0-8575-4457-a1c3-a474096d0e16",
-  "country": "IT",
-  "groups": [
-   "App1",
-   "App5"
-  ],
-  "roles": [
-   "Architect",
-   "App1"
-  ],
-  "first-name": "Stefano",
-  "last-name": "Croissant"
- },
- {
-  "cn": "Antoine.Croissant@example.com",
-  "uid": "LDAP-User-2",
-  "client-id": "091052e7-37e7-40ab-a055-2a6513010e46",
+  "client-id": "22dcbb28-affb-42e3-8d98-9f2edbc57282",
   "country": "UK",
   "groups": [
    "App3",
-   "App1"
-  ],
-  "roles": [
-   "Manager",
    "App4"
   ],
-  "first-name": "Antoine",
-  "last-name": "Croissant"
+  "roles": [
+   "Engineer",
+   "App1"
+  ],
+  "first-name": "Jeanne",
+  "last-name": "Fromage"
+ },
+ {
+  "cn": "Morgane.Fromage@example.com",
+  "uid": "LDAP-User-1",
+  "client-id": "c0d2fa5a-f564-4506-a0e5-6ba59235f11b",
+  "country": "FR",
+  "groups": [
+   "App2",
+   "App3"
+  ],
+  "roles": [
+   "Engineer",
+   "App4"
+  ],
+  "first-name": "Morgane",
+  "last-name": "Fromage"
  },
  {
   "cn": "Stefano.Baguette@example.com",
-  "uid": "LDAP-User-3",
-  "client-id": "927de6dd-22c9-4acd-b775-c4e4483cfa84",
-  "country": "UK",
+  "uid": "LDAP-User-2",
+  "client-id": "0dd26818-9056-465a-b362-e1c17bbd3d29",
+  "country": "IT",
   "groups": [
-   "App2",
+   "App1",
    "App2"
   ],
   "roles": [
-   "Analyst",
-   "App1"
+   "Architect",
+   "App3"
   ],
   "first-name": "Stefano",
   "last-name": "Baguette"
  },
  {
-  "cn": "Jeanne.Fromage@example.com",
+  "cn": "Jeanne.Kebab@example.com",
+  "uid": "LDAP-User-3",
+  "client-id": "0483a3b1-dd00-45ff-8ce6-1b6ce6696cf9",
+  "country": "IE",
+  "groups": [
+   "App2",
+   "App5"
+  ],
+  "roles": [
+   "Developer",
+   "App3"
+  ],
+  "first-name": "Jeanne",
+  "last-name": "Kebab"
+ },
+ {
+  "cn": "Stefano.Croissant@example.com",
   "uid": "LDAP-User-4",
-  "client-id": "7d17d09e-837a-411a-802b-fa35a769552c",
+  "client-id": "2b9b9f12-f698-4a8d-af44-1a6cfbe3a1fc",
   "country": "IT",
   "groups": [
    "App2",
-   "App3"
+   "App5"
   ],
   "roles": [
    "Engineer",
    "App4"
   ],
-  "first-name": "Jeanne",
-  "last-name": "Fromage"
+  "first-name": "Stefano",
+  "last-name": "Croissant"
  },
  {
   "cn": "Antoine.Kebab@example.com",
   "uid": "LDAP-User-5",
-  "client-id": "d42c5142-bb32-4b55-8194-a6fa44917181",
-  "country": "NL",
+  "client-id": "00e9b044-64bd-4f94-aeff-143ec0794958",
+  "country": "UK",
   "groups": [
-   "App4",
-   "App2"
+   "App3",
+   "App5"
   ],
   "roles": [
-   "Engineer",
-   "App2"
+   "Analyst",
+   "App1"
   ],
   "first-name": "Antoine",
   "last-name": "Kebab"
  },
  {
-  "cn": "Stefano.Kebab@example.com",
+  "cn": "Antoine.Pizza@example.com",
   "uid": "LDAP-User-6",
-  "client-id": "0f7e5070-7206-46ab-81ca-af3c40663733",
-  "country": "NL",
+  "client-id": "9363bb18-be33-40e7-bc08-7711cbe011fa",
+  "country": "FR",
   "groups": [
-   "App3",
-   "App4"
+   "App5",
+   "App5"
   ],
   "roles": [
-   "Developer",
-   "App3"
+   "Manager",
+   "App1"
   ],
-  "first-name": "Stefano",
-  "last-name": "Kebab"
+  "first-name": "Antoine",
+  "last-name": "Pizza"
  },
  {
   "cn": "Morgane.Fromage@example.com",
   "uid": "LDAP-User-7",
-  "client-id": "65926ac2-d02d-480a-b32e-a8930ccdc679",
-  "country": "IT",
+  "client-id": "f6443e5b-9130-4b3b-bbae-c1bd92d57e68",
+  "country": "UK",
   "groups": [
-   "App5",
-   "App4"
+   "App3",
+   "App5"
   ],
   "roles": [
    "Analyst",
-   "App3"
+   "App5"
   ],
   "first-name": "Morgane",
   "last-name": "Fromage"
  },
  {
-  "cn": "Antoine.Fromage@example.com",
+  "cn": "Jeanne.Croissant@example.com",
   "uid": "LDAP-User-8",
-  "client-id": "1ca0af97-e994-4386-b497-11e8fc334744",
-  "country": "IT",
+  "client-id": "0d718fce-144f-4a9f-9355-c1d2b5ed7ac9",
+  "country": "FR",
   "groups": [
-   "App5",
-   "App1"
+   "App4",
+   "App3"
   ],
   "roles": [
    "Engineer",
-   "App3"
+   "App1"
   ],
-  "first-name": "Antoine",
-  "last-name": "Fromage"
+  "first-name": "Jeanne",
+  "last-name": "Croissant"
  },
  {
-  "cn": "Pascal.Croissant@example.com",
+  "cn": "Antoine.Baguette@example.com",
   "uid": "LDAP-User-9",
-  "client-id": "f1a814f3-38b7-49ce-9613-4a79be72dd0f",
-  "country": "NL",
+  "client-id": "0e88ac8f-0b0b-4f87-b7c2-173956e1c833",
+  "country": "IE",
+  "groups": [
+   "App4",
+   "App4"
+  ],
+  "roles": [
+   "Manager",
+   "App2"
+  ],
+  "first-name": "Antoine",
+  "last-name": "Baguette"
+ },
+ {
+  "cn": "Stefano.Baguette@example.com",
+  "uid": "LDAP-User-10",
+  "client-id": "4f11c108-6ac9-4bc9-99a7-cbd52f662b54",
+  "country": "IE",
   "groups": [
    "App5",
    "App3"
@@ -156,30 +172,14 @@
    "Manager",
    "App2"
   ],
-  "first-name": "Pascal",
-  "last-name": "Croissant"
+  "first-name": "Stefano",
+  "last-name": "Baguette"
  },
  {
-  "cn": "Morgane.Kebab@example.com",
-  "uid": "LDAP-User-10",
-  "client-id": "5c2d7f3c-31ab-44e4-b650-8b1094365544",
-  "country": "NL",
-  "groups": [
-   "App4",
-   "App1"
-  ],
-  "roles": [
-   "Architect",
-   "App5"
-  ],
-  "first-name": "Morgane",
-  "last-name": "Kebab"
- },
- {
-  "cn": "Antoine.Pizza@example.com",
+  "cn": "Pascal.Croissant@example.com",
   "uid": "LDAP-User-11",
-  "client-id": "f7a01fbe-ecd0-4fc9-bbd8-3174afe93e2e",
-  "country": "NL",
+  "client-id": "118fbe01-7c77-4fb7-95b7-9c240d5fec2a",
+  "country": "UK",
   "groups": [
    "App1",
    "App1"
@@ -188,135 +188,135 @@
    "Developer",
    "App1"
   ],
-  "first-name": "Antoine",
-  "last-name": "Pizza"
- },
- {
-  "cn": "Pascal.Croissant@example.com",
-  "uid": "LDAP-User-12",
-  "client-id": "e358598a-ba64-4e04-8176-96df1913bb4b",
-  "country": "IE",
-  "groups": [
-   "App5",
-   "App1"
-  ],
-  "roles": [
-   "Engineer",
-   "App1"
-  ],
   "first-name": "Pascal",
   "last-name": "Croissant"
  },
  {
-  "cn": "Stefano.Croissant@example.com",
-  "uid": "LDAP-User-13",
-  "client-id": "98195372-5a30-4e1a-aa8d-c0c88d93805f",
+  "cn": "Jeanne.Baguette@example.com",
+  "uid": "LDAP-User-12",
+  "client-id": "4aea8db6-53b4-4bb5-bea5-4adb01586ec1",
   "country": "UK",
   "groups": [
    "App4",
-   "App5"
-  ],
-  "roles": [
-   "Architect",
-   "App1"
-  ],
-  "first-name": "Stefano",
-  "last-name": "Croissant"
- },
- {
-  "cn": "Pascal.Pizza@example.com",
-  "uid": "LDAP-User-14",
-  "client-id": "52d837d6-b8b5-49d2-b56b-843088e3e763",
-  "country": "IT",
-  "groups": [
-   "App5",
-   "App2"
-  ],
-  "roles": [
-   "Engineer",
-   "App2"
-  ],
-  "first-name": "Pascal",
-  "last-name": "Pizza"
- },
- {
-  "cn": "Antoine.Pizza@example.com",
-  "uid": "LDAP-User-15",
-  "client-id": "4c7fed1b-7600-4b88-850a-4e796e2aebb4",
-  "country": "NL",
-  "groups": [
-   "App1",
    "App4"
   ],
   "roles": [
-   "Manager",
-   "App1"
+   "Developer",
+   "App4"
   ],
-  "first-name": "Antoine",
-  "last-name": "Pizza"
+  "first-name": "Jeanne",
+  "last-name": "Baguette"
  },
  {
-  "cn": "Antoine.Fromage@example.com",
-  "uid": "LDAP-User-16",
-  "client-id": "2c513528-46ba-489b-9301-a49dea384687",
+  "cn": "Antoine.Kebab@example.com",
+  "uid": "LDAP-User-13",
+  "client-id": "f332e7da-c369-4255-b054-f6c3aae7c2db",
   "country": "FR",
   "groups": [
    "App2",
    "App5"
   ],
   "roles": [
-   "Analyst",
-   "App5"
+   "Developer",
+   "App2"
   ],
   "first-name": "Antoine",
-  "last-name": "Fromage"
+  "last-name": "Kebab"
  },
  {
-  "cn": "Jeanne.Baguette@example.com",
+  "cn": "Pascal.Baguette@example.com",
+  "uid": "LDAP-User-14",
+  "client-id": "7a1c9be9-0f26-40d2-bae3-332b94596eb5",
+  "country": "IT",
+  "groups": [
+   "App3",
+   "App5"
+  ],
+  "roles": [
+   "Developer",
+   "App5"
+  ],
+  "first-name": "Pascal",
+  "last-name": "Baguette"
+ },
+ {
+  "cn": "Stefano.Kebab@example.com",
+  "uid": "LDAP-User-15",
+  "client-id": "181c61e1-e710-4f7d-9bfe-4e094d1bc844",
+  "country": "NL",
+  "groups": [
+   "App4",
+   "App1"
+  ],
+  "roles": [
+   "Architect",
+   "App4"
+  ],
+  "first-name": "Stefano",
+  "last-name": "Kebab"
+ },
+ {
+  "cn": "Morgane.Pizza@example.com",
+  "uid": "LDAP-User-16",
+  "client-id": "6a1c3995-a684-4acd-a8fc-5d68404760ce",
+  "country": "NL",
+  "groups": [
+   "App2",
+   "App3"
+  ],
+  "roles": [
+   "Analyst",
+   "App2"
+  ],
+  "first-name": "Morgane",
+  "last-name": "Pizza"
+ },
+ {
+  "cn": "Pascal.Kebab@example.com",
   "uid": "LDAP-User-17",
-  "client-id": "a14a5c33-51a0-4b93-9032-671245ff35a3",
-  "country": "UK",
+  "client-id": "1bd32ec2-83b4-452d-a49d-122147a34764",
+  "country": "NL",
   "groups": [
    "App1",
    "App5"
   ],
   "roles": [
-   "Analyst",
-   "App1"
+   "Engineer",
+   "App4"
   ],
-  "first-name": "Jeanne",
-  "last-name": "Baguette"
+  "first-name": "Pascal",
+  "last-name": "Kebab"
  },
  {
-  "cn": "Morgane.Fromage@example.com",
+  "cn": "Morgane.Kebab@example.com",
   "uid": "LDAP-User-18",
-  "client-id": "256731ab-8c3f-4006-91ad-aa1784d59d0b",
-  "country": "NL",
+  "client-id": "9f031a1d-c983-4415-903f-fb11997df85e",
+  "country": "IT",
   "groups": [
-   "App3",
+   "App4",
    "App3"
   ],
   "roles": [
-   "Engineer",
-   "App5"
+   "Manager",
+   "App3"
   ],
   "first-name": "Morgane",
-  "last-name": "Fromage"
+  "last-name": "Kebab"
  },
  {
-  "cn": "Stefano.Kebab@example.com",
+  "cn": "Morgane.Kebab@example.com",
   "uid": "LDAP-User-19",
-  "client-id": "64975760-cdd6-4910-8133-928ea48bd091",
-  "country": "NL",
+  "client-id": "77375c42-5e68-4f7f-ae20-d397e8afac33",
+  "country": "UK",
   "groups": [
-   "App5",
-   "App2"
+   "App1",
+   "App4"
   ],
   "roles": [
-   "Engineer",
+   "Developer",
    "App2"
   ],
-  "first-name": "Stefano",
+  "first-name": "Morgane",
   "last-name": "Kebab"
  }
 ]

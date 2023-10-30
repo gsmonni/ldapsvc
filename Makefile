@@ -42,7 +42,7 @@ publish:
 	#git tag ${VERSION} main
 	git push origin ${VERSION}
 
-docker-run: ## Build the container
+docker-run: build-linux ## Build the container
 	docker build -t $(APP_NAME) -f Dockerfile . 
 	docker run -it --rm -v .:/$(APP_NAME) --name="$(APP_NAME)" $(APP_NAME)
 
