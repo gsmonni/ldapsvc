@@ -11,8 +11,10 @@ import (
 	"path/filepath"
 )
 
-const ConfFile = "data/conf/conf.json"
-const DefConfFile = "data/conf/default.json"
+var (
+	ConfFile    = filepath.Join("data", "conf", "conf.json")
+	DefConfFile = filepath.Join("data", "conf", "default.json")
+)
 
 func Parse(cfg *websvc.Parameters) error {
 	common.Datapath = os.Getenv("DATAPATH")
