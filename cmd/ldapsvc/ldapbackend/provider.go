@@ -7,19 +7,20 @@ import (
 	"log"
 )
 
-func New(par LDAPParameters) (*Provider, error) {
-	p := new(Provider)
+func New(par LDAPParameters) (p *Provider, err error) {
+	p = new(Provider)
 	p.r = new(Results)
 	p.parameters = par
 
 	if p.parameters.Mock {
-		if err := p.mockProvider(); err != nil {
-			return nil, fmt.Errorf("error while creating mock-data (%v)", err)
+		if err = p.mockProvider(); err != nil {
+			err = fmt.Errorf("error while creating mock-data file %s (%v)", p.parameters.MockDataFile, err)
 		}
 		return p, nil
 	} else {
-		return nil, fmt.Errorf("accessing non-mocked ldap-backend is currently NOT supported")
+		err = fmt.Errorf("accessing non-mocked ldap-backend is currently NOT supported")
 	}
+	return nil, err
 }
 
 func (p *Provider) Connect() error {
