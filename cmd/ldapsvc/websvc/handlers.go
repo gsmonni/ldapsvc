@@ -61,6 +61,10 @@ func HealthCheckHandler(w http.ResponseWriter, _ *http.Request) {
 	} else {
 		s.LDAPServiceStatus = LDAPStatusDown
 		s.WebSvcStatus = ServiceStatusUp
+		s.LDAPMock = Web.p.LDAP.Mock
+		if s.LDAPMock {
+			s.MockDataFile = Web.p.LDAP.MockDataFile
+		}
 	}
 	setJsonResponse(s, w)
 }
