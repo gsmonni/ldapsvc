@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
+	"github.com/gsmonni/ladapsvc/cmd/ldapsvc/ldapbackend"
 	"log"
 	"net/http"
 	"time"
@@ -24,7 +25,12 @@ func setJsonResponse(data interface{}, w http.ResponseWriter) {
 func LDAPQueryHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	q := fmt.Sprintf("%s=%s", vars[QueryAttributeType], vars[QueryAttributeValue])
-	log.Printf("querying %s=%s", vars[QueryAttributeType], vars[QueryAttributeValue])
+	v := ldapbackend.QueryResult{}
+	if !v.IsValidFieldName(vars[QueryAttributeType]) {
+		s := ReturnMessage{Message: fmt.Sprintf("%s is not a valid property-name", vars[QueryAttributeType])}
+		setJsonResponse(s, w)
+		w.WriteHeader(s.Code)
+	}
 	if Provider == nil {
 		s := ReturnMessage{"LDAP Provider not initialized", http.StatusBadRequest}
 		setJsonResponse(s, w)
