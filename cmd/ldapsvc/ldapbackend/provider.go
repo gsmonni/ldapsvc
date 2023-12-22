@@ -15,8 +15,9 @@ func New(par LDAPParameters) (p *Provider, err error) {
 	if p.parameters.Mock {
 		if err = p.mockProvider(); err != nil {
 			err = fmt.Errorf("error while creating mock-data file %s (%v)", p.parameters.MockDataFile, err)
+		} else {
+			return p, nil
 		}
-		return p, nil
 	} else {
 		err = fmt.Errorf("accessing non-mocked ldap-backend is currently NOT supported")
 	}

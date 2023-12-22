@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
+	"log"
 	"net/http"
 	"time"
 )
@@ -23,7 +24,7 @@ func setJsonResponse(data interface{}, w http.ResponseWriter) {
 func LDAPQueryHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	q := fmt.Sprintf("%s=%s", vars[QueryAttributeType], vars[QueryAttributeValue])
-
+	log.Printf("querying %s=%s", vars[QueryAttributeType], vars[QueryAttributeValue])
 	if Provider == nil {
 		s := ReturnMessage{"LDAP Provider not initialized", http.StatusBadRequest}
 		setJsonResponse(s, w)
@@ -34,6 +35,7 @@ func LDAPQueryHandler(w http.ResponseWriter, r *http.Request) {
 		setJsonResponse(s, w)
 		w.WriteHeader(s.Code)
 	} else {
+		log.Printf("%v", r)
 		if len(*r) > 0 {
 			d := (*r)[0]
 			setJsonResponse(d, w)
