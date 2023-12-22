@@ -2,6 +2,7 @@ package ldapbackend
 
 import (
 	"fmt"
+	"github.com/go-ldap/ldap"
 	"github.com/gsmonni/ladapsvc/cmd/ldapsvc/common"
 	"log"
 )

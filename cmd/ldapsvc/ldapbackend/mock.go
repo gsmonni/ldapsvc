@@ -6,6 +6,7 @@ import (
 	"github.com/gsmonni/ladapsvc/cmd/ldapsvc/common"
 	"log"
 	"math/rand"
+	"os"
 	"strings"
 )
 
@@ -37,17 +38,31 @@ func GenerateMockData(N uint16) *Results {
 	return &l
 }
 
-func SaveResult(r *Results, fn string) error {
+func SaveResult(r *Results, fn string) (err error) {
+	defer func() {
+		if err != nil {
+			err = fmt.Errorf("error while saving %s (%v)", fn, err.Error())
+		}
+	}()
+
 	if r == nil {
-		return fmt.Errorf("empty result")
+		return fmt.Errorf("empty ldap data")
+	}
+	if common.Datapath == "" {
+		common.Datapath = DefDataDir
+	}
+	if !common.IsDir(common.Datapath) {
+		if err := os.MkdirAll(common.Datapath, os.ModePerm); err != nil {
+			return fmt.Errorf("error while creating directory %s (%v)", common.Datapath, err.Error())
+		}
 	}
 
 	if err := common.SaveJson(fn, *r); err != nil {
-		return fmt.Errorf("error saving data (%v)", err.Error())
+		err = fmt.Errorf("error saving JSON (%v)", err.Error())
+	} else {
+		log.Printf("saved ldap-mock-data to %s", fn)
 	}
-	log.Printf("saved ldap-mock-data to %s", fn)
-
-	return nil
+	return err
 }
 
 func QueryMockData(q string, r *Results) (*Results, error) {
