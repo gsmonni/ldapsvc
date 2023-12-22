@@ -42,9 +42,11 @@ publish:
 	#git tag ${VERSION} main
 	git push origin ${VERSION}
 
-docker-run: build-linux ## Build the container
-	docker build -t $(APP_NAME) -f Dockerfile . 
+docker-run: build-docker ## Run the container
 	docker run -it --rm -p 8080:8080 -v .:/$(APP_NAME) --name="$(APP_NAME)" $(APP_NAME)
+
+build-docker: build-linux ## Build the container
+	docker build -t $(APP_NAME) -f Dockerfile . 
 
 first-time: clean vendor test run # run this command to pull all dependencies (this should be run only once)
 
