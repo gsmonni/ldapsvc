@@ -3,8 +3,6 @@ package websvc
 import "fmt"
 
 const (
-	URIPrefix = "/api/v1/ldap"
-
 	ServiceStatusUp   = "UP"
 	ServiceStatusDown = "DOWN"
 	LDAPStatusUp      = "UP"

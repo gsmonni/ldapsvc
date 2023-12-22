@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/tls"
 	"crypto/x509"
+	"errors"
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/gsmonni/ladapsvc/cmd/ldapsvc/common"
@@ -126,17 +127,16 @@ func (w *Websvc) Start() {
 			log.Fatal("webservice set to nil. cannot start")
 		}
 		log.Fatal("server set to nil. cannot start")
-
 	}
 	go func() {
 		defer w.wg.Done() // let main know we are done cleaning up
 		// always returns error. ErrServerClosed on graceful close
 		if w.p.Certificate.UseTLS {
-			if err := w.srv.ListenAndServeTLS(w.p.Certificate.CertFile, w.p.Certificate.KeyFile); err != http.ErrServerClosed {
+			if err := w.srv.ListenAndServeTLS(w.p.Certificate.CertFile, w.p.Certificate.KeyFile); !errors.Is(err, http.ErrServerClosed) {
 				log.Fatalf("cannot start https server (%v)", err)
 			}
 		} else {
-			if err := w.srv.ListenAndServe(); err != http.ErrServerClosed {
+			if err := w.srv.ListenAndServe(); !errors.Is(err, http.ErrServerClosed) {
 				// unexpected error. port in use?
 				log.Fatalf("cannot start http server (%v)", err)
 			}
