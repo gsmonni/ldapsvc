@@ -27,8 +27,8 @@ OPTIONS
   --certificate-use-tls/$LDAPSVC_CERTIFICATE_USE_TLS      <bool>    (default: false)
   --certificate-use-mtls/$LDAPSVC_CERTIFICATE_USE_MTLS    <bool>    (default: false)
   --certificate-ca-file/$LDAPSVC_CERTIFICATE_CA_FILE      <string>  (default: ca.cert)
-  --certificate-cert-file/$LDAPSVC_CERTIFICATE_CERT_FILE  <string>  (default: /Users/gianstefanomonni/git/ladapsvc/data/certs/cert.crt)
-  --certificate-key-file/$LDAPSVC_CERTIFICATE_KEY_FILE    <string>  (default: /Users/gianstefanomonni/git/ladapsvc/data/certs/private.key)
+  --certificate-cert-file/$LDAPSVC_CERTIFICATE_CERT_FILE  <string>  (default: data/certs/cert.crt)
+  --certificate-key-file/$LDAPSVC_CERTIFICATE_KEY_FILE    <string>  (default: data/certs/private.key)
   --certificate-ca-path/$LDAPSVC_CERTIFICATE_CA_PATH      <string>  (default: .)
   --local-address/$LDAPSVC_LOCAL_ADDRESS                  <string>  
   --port/$LDAPSVC_PORT                                    <int>     (default: 8080)
