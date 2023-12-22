@@ -69,17 +69,18 @@ func QueryMockData(q string, r *Results) (*Results, error) {
 	if r == nil {
 		return nil, fmt.Errorf("ldap-data is empty")
 	}
-	id := strings.Split(q, "client-id=")
+	s := strings.Split(q, "=")
+	k := s[0]
 	l := make(Results, 0)
-	switch len(id) {
+	switch len(s) {
 	case 0:
 		return nil, fmt.Errorf("invalid query")
 	case 1:
 		return &l, nil
 	default:
-		k := id[1]
+		v := s[1]
 		for _, d := range *(r) {
-			if d.ClientId == k {
+			if d.GetPropertyValue(k) == v {
 				l = append(l, d)
 			}
 		}
