@@ -49,6 +49,8 @@ type (
 	ServerStatus struct {
 		WebSvcStatus      string `json:"web-service-status"`
 		LDAPServiceStatus string `json:"ldap-service-status"`
+		LDAPMock          bool   `json:"ldap-mock"`
+		MockDataFile      string `json:"mock-file"`
 		ReturnStatusCode  int    `json:"-"`
 	}
 )

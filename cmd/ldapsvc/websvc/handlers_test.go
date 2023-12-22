@@ -30,7 +30,7 @@ func TestHealthCheckHandlerOK(t *testing.T) {
 	assert.Equal(t, http.StatusInternalServerError, rr.Code)
 
 	// Check the response body is what we expect.
-	expected := `{"web-service-status":"DOWN","ldap-service-status":"DOWN"}`
+	expected := "{\"web-service-status\":\"DOWN\",\"ldap-service-status\":\"DOWN\",\"ldap-mock\":false,\"mock-file\":\"\"}"
 	assert.Equal(t, expected, rr.Body.String())
 	pg.Reset()
 }
@@ -54,6 +54,6 @@ func TestHealthCheckHandlerWebNil(t *testing.T) {
 	assert.Equal(t, http.StatusInternalServerError, rr.Code)
 
 	// Check the response body is what we expect.
-	expected := "{\"web-service-status\":\"DOWN\",\"ldap-service-status\":\"DOWN\"}"
+	expected := "{\"web-service-status\":\"DOWN\",\"ldap-service-status\":\"DOWN\",\"ldap-mock\":false,\"mock-file\":\"\"}"
 	assert.Equal(t, expected, rr.Body.String())
 }
