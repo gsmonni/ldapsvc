@@ -7,7 +7,25 @@ import (
 	"log"
 )
 
-func New(par LDAPParameters) (p *Provider, err error) {
+func (p *LDAPParameters) Validate() error {
+	if p == nil {
+		return fmt.Errorf("invalid parameters")
+	}
+	if p.Mock {
+		if p.MockItemsNum == 0 {
+			return fmt.Errorf("mocked-item number must be >0")
+		}
+		if p.MockDataFile == "" {
+			return fmt.Errorf("invalid filename")
+		}
+	}
+	return nil
+}
+
+func New(par *LDAPParameters) (p *Provider, err error) {
+	if err := par.Validate(); err != nil {
+		return nil, err
+	}
 	p = new(Provider)
 	p.r = new(Results)
 	p.parameters = par
@@ -46,6 +64,9 @@ func (p *Provider) bind() error {
 }
 
 func (p *Provider) mockProvider() error {
+	if p == nil || p.parameters == nil {
+		return fmt.Errorf("invalid parameters")
+	}
 	if !common.FileExists(p.parameters.MockDataFile) {
 		p.r = GenerateMockData(p.parameters.MockItemsNum)
 		if err := SaveResult(p.r, p.parameters.MockDataFile); err != nil {

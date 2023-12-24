@@ -28,3 +28,8 @@ func TestReadJson(t *testing.T) {
 	var d map[string]int = map[string]int{"test": 1}
 	assert.Error(t, ReadJson("", d))
 }
+
+func TestGetRootPath(t *testing.T) {
+	p := GetRootPath()
+	assert.NotEmpty(t, "/", p)
+}

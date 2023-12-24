@@ -111,7 +111,7 @@ func New(p *Parameters) (*Websvc, error) {
 	w.wg = &sync.WaitGroup{}
 	w.wg.Add(1)
 
-	if Provider, err = ldapbackend.New(p.LDAP); err != nil {
+	if Provider, err = ldapbackend.New(&p.LDAP); err != nil {
 		return nil, fmt.Errorf("cannot build LDAP provider (%v)", err.Error())
 	}
 
