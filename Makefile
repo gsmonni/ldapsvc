@@ -9,7 +9,7 @@ VERSION=$(shell cat VERSION)
 PWD=$(shell pwd)
 
 lint: # run go-linter container
-	docker run --rm -v ${PWD}:/ldapsvc -w /ldapsvc golangci/golangci-lint:latest golangci-lint run -v
+	docker run --rm -v ${PWD}:/${APP_NAME} -w /${APP_NAME} golangci/golangci-lint:latest golangci-lint run -v
 
 build: clean # build  ldapsvc for local system
 	$(shell mkdir ${BINARY_FOLDER})
