@@ -58,7 +58,7 @@ func SaveResult(r *Results, fn string) (err error) {
 	}
 
 	if err := common.SaveJson(fn, *r); err != nil {
-		err = fmt.Errorf("error saving JSON (%v)", err.Error())
+		return fmt.Errorf("error saving JSON (%v)", err.Error())
 	} else {
 		log.Printf("saved ldap-mock-data to %s", fn)
 	}

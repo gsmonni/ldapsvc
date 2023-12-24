@@ -46,7 +46,7 @@ func Parse(cfg *websvc.Parameters) error {
 
 	if cfg.SaveLastConfig {
 		if err := common.SaveJson(ConfFile, *cfg); err != nil {
-			log.Printf("error saving conf %v", err.Error())
+			log.Printf("error saving conf to file %s (%v)", ConfFile, err.Error())
 		}
 	}
 	return nil

@@ -19,7 +19,7 @@ func setJsonResponse(data interface{}, w http.ResponseWriter) {
 		w.WriteHeader(http.StatusInternalServerError)
 		j = []byte(fmt.Sprintf("error while converting response data (%v)", err.Error()))
 	}
-	_, _ = fmt.Fprintf(w, string(j))
+	_, _ = fmt.Fprint(w, string(j))
 }
 
 func LDAPQueryHandler(w http.ResponseWriter, r *http.Request) {
@@ -45,7 +45,7 @@ func LDAPQueryHandler(w http.ResponseWriter, r *http.Request) {
 		if len(*r) > 0 {
 			setJsonResponse(*r, w)
 		} else {
-			s := ReturnMessage{fmt.Sprintf("ldap query returned empty result"), http.StatusOK}
+			s := ReturnMessage{"ldap query returned empty result", http.StatusOK}
 			setJsonResponse(s, w)
 		}
 	}

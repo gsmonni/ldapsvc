@@ -8,6 +8,7 @@ import (
 	"os"
 )
 
+// FileExists returns true if filename exists, false otherwise
 func FileExists(filename string) bool {
 	info, err := os.Stat(filename)
 	if os.IsNotExist(err) {
@@ -16,6 +17,7 @@ func FileExists(filename string) bool {
 	return !info.IsDir()
 }
 
+// IsDir return true if path is a directory, false otherwise
 func IsDir(path string) bool {
 	fileInfo, err := os.Stat(path)
 
@@ -25,6 +27,7 @@ func IsDir(path string) bool {
 	return fileInfo.IsDir()
 }
 
+// SaveJson saves data to fn JSON file, returns an error if the save operation fails
 func SaveJson(fn string, data interface{}) error {
 	if file, err := json.MarshalIndent(data, "", " "); err != nil {
 		return fmt.Errorf("error marhsaling json data (%v)", err.Error())

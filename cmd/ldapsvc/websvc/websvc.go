@@ -72,9 +72,6 @@ func buildServer(p *Parameters, h http.Handler) (*http.Server, error) {
 			ReadTimeout:  15 * time.Second,
 		}
 	}
-	if s == nil {
-		return nil, fmt.Errorf("cannot create server")
-	}
 	return s, nil
 }
 

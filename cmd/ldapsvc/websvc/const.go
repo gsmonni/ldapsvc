@@ -15,6 +15,6 @@ const (
 // these variables should be seen as constants
 var (
 	URILDAPQuery = fmt.Sprintf("/ldap/query/{%s}/{%s}", QueryAttributeType, QueryAttributeValue)
-	URIHealth    = fmt.Sprintf("/ldap/health")
-	URIStop      = fmt.Sprintf("/ldap/stop")
+	URIHealth    = "/ldap/health"
+	URIStop      = "/ldap/stop"
 )
