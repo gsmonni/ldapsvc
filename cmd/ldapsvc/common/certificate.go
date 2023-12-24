@@ -7,6 +7,9 @@ import (
 )
 
 func (c *TCertificate) Validate() error {
+	if c == nil {
+		return fmt.Errorf("certificate cannot be nil")
+	}
 	if c.UseMTLS && !c.UseTLS {
 		c.UseTLS = true
 	}

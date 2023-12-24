@@ -17,6 +17,9 @@ var (
 )
 
 func Parse(cfg *websvc.Parameters) error {
+	if cfg == nil {
+		return fmt.Errorf("parameter cannot be nil")
+	}
 	common.Datapath = os.Getenv("DATAPATH")
 
 	cfg.Build = "1.0.0"
