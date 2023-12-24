@@ -1,4 +1,6 @@
 # ldaspvc
+LDAPSvc is a golang REST API server that exposes an endpoint to browse a LDAP directory 
+
 ![image](https://github.com/gsmonni/ldapsvc/assets/142036606/187f6d78-eb55-4aab-9230-402d7f98c904)
 
 ## To build the service
