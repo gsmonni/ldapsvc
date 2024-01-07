@@ -19,6 +19,7 @@ func GenerateMockData(N uint16) *Results {
 	for i := 0; uint16(i) < N; i++ {
 		name := mockFirstNames[rand.Intn(len(mockFirstNames))]
 		lastname := mockLastNames[rand.Intn(len(mockLastNames))]
+		log.Printf("id %d %s, %s", i, name, lastname)
 		d := QueryResult{
 			CN:       fmt.Sprintf("%s.%s@example.com", name, lastname),
 			UID:      fmt.Sprintf("LDAP-User-%d", i),

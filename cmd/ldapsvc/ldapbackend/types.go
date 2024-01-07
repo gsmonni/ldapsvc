@@ -34,6 +34,6 @@ type (
 		r *Results
 		c *ldap.Conn
 
-		parameters LDAPParameters
+		parameters *LDAPParameters
 	}
 )

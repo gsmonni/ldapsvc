@@ -6,12 +6,19 @@ import (
 	"io"
 	"log"
 	"os"
+	"path/filepath"
+	"runtime"
+	"strings"
 )
 
 // FileExists returns true if filename exists, false otherwise
 func FileExists(filename string) bool {
 	info, err := os.Stat(filename)
 	if os.IsNotExist(err) {
+		return false
+	}
+	if err != nil {
+		log.Printf("%v", err.Error())
 		return false
 	}
 	return !info.IsDir()
@@ -58,4 +65,13 @@ func ReadJson(fn string, data interface{}) error {
 		return json.Unmarshal(byteValue, &data)
 	}
 
+}
+
+// GetRootPath returns the path of the current project
+func GetRootPath() string {
+	_, b, _, _ := runtime.Caller(0)
+	p := filepath.Dir(b)
+	s := strings.Split(p, filepath.Join("cmd"))
+
+	return filepath.Dir(s[0])
 }
