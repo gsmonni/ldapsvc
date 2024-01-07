@@ -26,21 +26,27 @@ go run cmd/main.go -h
 Usage: main [options] [arguments]
 
 OPTIONS
-  --certificate-use-tls/$LDAPSVC_CERTIFICATE_USE_TLS      <bool>    (default: false)
-  --certificate-use-mtls/$LDAPSVC_CERTIFICATE_USE_MTLS    <bool>    (default: false)
-  --certificate-ca-file/$LDAPSVC_CERTIFICATE_CA_FILE      <string>  (default: ca.cert)
-  --certificate-cert-file/$LDAPSVC_CERTIFICATE_CERT_FILE  <string>  (default: data/certs/cert.crt)
-  --certificate-key-file/$LDAPSVC_CERTIFICATE_KEY_FILE    <string>  (default: data/certs/private.key)
-  --certificate-ca-path/$LDAPSVC_CERTIFICATE_CA_PATH      <string>  (default: .)
+  --certificate-use-tls/$LDAPSVC_CERTIFICATE_USE_TLS      <bool>    
+  --certificate-use-mtls/$LDAPSVC_CERTIFICATE_USE_MTLS    <bool>    
+  --certificate-ca-file/$LDAPSVC_CERTIFICATE_CA_FILE      <string>  
+  --certificate-cert-file/$LDAPSVC_CERTIFICATE_CERT_FILE  <string>  
+  --certificate-key-file/$LDAPSVC_CERTIFICATE_KEY_FILE    <string>  
+  --certificate-ca-path/$LDAPSVC_CERTIFICATE_CA_PATH      <string>  
   --local-address/$LDAPSVC_LOCAL_ADDRESS                  <string>  
-  --port/$LDAPSVC_PORT                                    <int>     (default: 8080)
-  --ldap-bind-string/$LDAPSVC_LDAP_BIND_STRING            <string>  (default: cn=admin)
-  --ldap-bind-password/$LDAPSVC_LDAP_BIND_PASSWORD        <string>  (default: xxxxxx)
-  --ldap-server/$LDAPSVC_LDAP_SERVER                      <string>  (default: localhost)
-  --ldap-port/$LDAPSVC_LDAP_PORT                          <int>     (default: 636)
-  --ldap-use-ldaps/$LDAPSVC_LDAP_USE_LDAPS                <string>  (default: false)
+  --port/$LDAPSVC_PORT                                    <int>     
+  --save-last-config/$LDAPSVC_SAVE_LAST_CONFIG            <bool>    
+  --ldap-bind-string/$LDAPSVC_LDAP_BIND_STRING            <string>  
+  --ldap-bind-password/$LDAPSVC_LDAP_BIND_PASSWORD        <string>  
+  --ldap-base-dn/$LDAPSVC_LDAP_BASE_DN                    <string>  
+  --ldap-server/$LDAPSVC_LDAP_SERVER                      <string>  
+  --ldap-port/$LDAPSVC_LDAP_PORT                          <uint>    
+  --ldap-use-ldaps/$LDAPSVC_LDAP_USE_LDAPS                <bool>    
+  --ldap-mock/$LDAPSVC_LDAP_MOCK                          <bool>    
+  --ldap-mock-data-file/$LDAPSVC_LDAP_MOCK_DATA_FILE      <string>  
+  --ldap-mock-items-num/$LDAPSVC_LDAP_MOCK_ITEMS_NUM      <uint>    
   --help/-h                                               
   display this help message
+
 
 
 ```
